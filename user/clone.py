@@ -134,7 +134,7 @@ def copy_users_grants(userfrom=None, userto=None, dryrun=False, ocimds=False, fo
                stmt = """SHOW CREATE USER `{}`@`{}`""".format(user[0], user[1])
                create_user = session.run_sql(stmt).fetch_one()[0] + ";"
                #print("-- DEBUG: {}".format(create_user))
-               create_user=create_user.replace("CREATE USER `{}`@`{}`".format(user[0], user[1]),"CREATE USER IF NOT EXISTS {}".format(userto))               
+               create_user=create_user.replace("CREATE USER {}@{}".format(user[0], user[1]),"CREATE USER IF NOT EXISTS {}".format(userto))               
                #print("-- DEBUG: {}".format(create_user))
             if dryrun:
                 print("-- User `{}`@`{}`".format(user[0], user[1]))
